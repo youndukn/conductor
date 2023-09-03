@@ -10,7 +10,7 @@ from firebase_admin import credentials
 from firebase_admin import auth
 
 if not firebase_admin._apps:
-    cred = credentials.Certificate('conductor-7ee1a-5e9231f4cca7.json')
+    cred = credentials.Certificate(st.secrets('google_json'))
     firebase_admin.initialize_app(cred)
 
 def sign_up(role):
