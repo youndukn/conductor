@@ -4,7 +4,7 @@ import account
 import tempfile
 
 from langchain.document_loaders import PyPDFLoader
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import Pinecone
 
 import PyPDF2
 import random
@@ -21,6 +21,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from streamlit_calendar import calendar
 
+import pinecone
 import base64
 
 import os
@@ -28,6 +29,9 @@ import os
 account.sign_up("사장님")
 
 openai_key = st.secrets["openai_key"]
+pinecone_api_key = st.secrets["pinecone_api_key"]
+environment_api_key = st.secrets["environment_api_key"]
+index_name = "conducto"
 
 question_list = ["해당 내용을 직원한테 교육하려고 하는데 어떤 스케줄로 해야될까?", ]
 
@@ -109,8 +113,12 @@ def main():
         embeddings_model = OpenAIEmbeddings(openai_api_key=openai_key)
 
         texts = text_splitter.split_documents(pages)
-
-        db = Chroma.from_documents(texts, embeddings_model)
+        pinecone.init(
+            api_key=pinecone_api_key,
+            environment=environment_api_key
+        )
+        
+        db = Pinecone.from_documents(texts, embeddings_model, index_name=index_name)
 
         from langchain.callbacks.base import BaseCallbackHandler
         class StreamHandler(BaseCallbackHandler):
