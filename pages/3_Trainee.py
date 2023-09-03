@@ -27,7 +27,7 @@ import os
 
 account.sign_up("직원")
 
-openai_key = st.secrets("openai_key")
+openai_key = st.secrets["openai_key"]
 
 question_list = ["오늘 숙지 해야되는 내용은 어떻게되?", ]
 
