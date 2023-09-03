@@ -1,4 +1,3 @@
-pysqlite3-binary
 streamlit
 streamlit_tags
 streamlit_authenticator
@@ -8,5 +7,5 @@ PyPDF2
 streamlit_calendar
 pypdf
 openai
-chromadb
+pinecone-client
 tiktoken
