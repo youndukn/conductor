@@ -10,7 +10,7 @@ from firebase_admin import credentials
 from firebase_admin import auth
 import json
 
-json_data = json.loads(st.secrets('google_json'), strict=False)
+json_data = json.loads(st.secrets("google_json"), strict=False)
 
 if not firebase_admin._apps:
     cred = credentials.Certificate(json_data)
