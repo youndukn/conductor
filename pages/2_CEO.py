@@ -27,7 +27,7 @@ import os
 
 account.sign_up("사장님")
 
-openai_key = st.secrets("openai_key")
+openai_key = st.secrets["openai_key"]
 
 question_list = ["해당 내용을 직원한테 교육하려고 하는데 어떤 스케줄로 해야될까?", ]
 
